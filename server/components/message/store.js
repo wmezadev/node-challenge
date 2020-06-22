@@ -6,14 +6,14 @@ function addMessage(message) {
     myMessage.save();
 }
 
-async function getMessages(filterUser) {
+async function getMessages(filterChat) {
     return new Promise((resolve, reject) => {
         let filter = {};
-        if(filterUser !== null) {
-            filter = { user: filterUser };
+        if(filterChat !== null) {
+            filter = { chatroom: filterChat };
         } 
         Model.find(filter)
-            .populate('user')
+            .populate('user', '-password')
             .exec((error, populate) => {
                 if(error){
                     reject(error);

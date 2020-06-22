@@ -9,7 +9,7 @@ function addMessage(chat, user, message) {
         }
 
         const fullMessage = {
-            chat: chat,
+            chatroom: chat,
             user: user,
             message: message,
             created_at: new Date()
@@ -21,9 +21,9 @@ function addMessage(chat, user, message) {
     });
 }
 
-function getMessages (filterUser) {
+function getMessages (filterChat) {
     return new Promise ((resolve, reject) => {
-        resolve(store.list(filterUser));
+        resolve(store.list(filterChat));
     });
 }
 
