@@ -36,7 +36,7 @@ async function signup(username, password) {
 
     const tokken = jwt.sign(payload, "randomString", { expiresIn: 3600 });
 
-    return { username, tokken };
+    return { id: user.id, username: user.username, tokken };
 
 }
 
@@ -67,7 +67,7 @@ async function login(username, password) {
 
     const tokken = jwt.sign(payload, "randomString", { expiresIn: 3600 });
 
-    return { tokken };
+    return { id: user.id, username: user.username, tokken };
 
 }
 
