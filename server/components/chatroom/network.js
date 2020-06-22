@@ -1,12 +1,12 @@
 const express = require('express');
 const response = require('../../network/response');
 const controller = require('./controller');
+const auth = require('../../middleware/auth');
 
 const router = express.Router();
 
-router.get('/:userId', function(req, res) {
-    console.log(req.params.userId)
-    controller.listChats(req.params.userId)
+router.get('/', auth, function(req, res) {
+    controller.listChats(req.user.id)
     .then((users) => {
         response.success(req, res, users, 200);
     })
@@ -15,8 +15,8 @@ router.get('/:userId', function(req, res) {
     })
 });
 
-router.post('/', function(req, res) {
-    controller.addChat(req.body.users)
+router.post('/', auth, function(req, res) {
+    controller.addChat([req.user.id, ...req.body.users], req.body.chatname)
     .then(data => {
         response.success(req, res, data, 201);
     })

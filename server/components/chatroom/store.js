@@ -6,13 +6,13 @@ function addChat(chat) {
 }
 
 async function listChats(userId) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {   
         let filter = {};
         if(userId) {
             filter = { users: userId };
         } 
         Model.find(filter)
-            .populate('users')
+            .populate('users', '-password')
             .exec((error, populate) => {
                 if(error){
                     reject(error);
