@@ -1,8 +1,9 @@
 const store = require('./store');
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 function getUsers() {
-    return store.get();
+    return store.getAll();
 }
 
 async function createUser(username, password) {
@@ -26,6 +27,22 @@ async function createUser(username, password) {
     };
     
     return await store.create(user);
+
+}
+
+async function login(username, password) {
+
+    user = await store.get(username);
+
+    if(!username || !password || user){
+        return Promise.reject('Invalid username or password');
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+        return Promise.reject('Invalid password');
+    }
 
 }
 
