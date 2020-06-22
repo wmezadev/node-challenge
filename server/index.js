@@ -4,8 +4,10 @@ const app = express();
 const server = require('http').Server(app);
 
 const cors = require('cors');
+const db = require('./db');
 const bodyParser = require('body-parser');
 
+db.connect(process.env.DB_URL);
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

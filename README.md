@@ -33,3 +33,16 @@ This application should allow several users to talk in a chatroom and also to ge
 When you finish the assignment, send a zip file (don’t forget to include the .git/ folder.) or upload your project to your Git repo (Github, BitBucket, etc...) and share the repository link with your initial contact via email. Indicate which, if any, of the bonus tasks you completed.
 
 If you didn’t manage to finish everything, please tell us which parts you completed.
+
+# Solution instructions
+
+## Getting started
+
+Docker is required to run the project.
+````
+docker-compose up --build
+````
+Dev
+````
+docker-compose -f "docker-compose.dev.yml" up
+````
