@@ -44,11 +44,17 @@ Docker is required to run the project.
 
 You can find a Postman API collection inside docs folder
 
-##Production
+## Production
 ````
 docker-compose up --build
 ````
-##Development
+## Development
 ````
 docker-compose -f "docker-compose.dev.yml" up --build
 ````
+
+## TODO
+- Pending finish bot csv parsing.
+- Pending RabbitMQ integration.
+- Pending Jest and Mocha testing.
+- Pending React client frontend.
