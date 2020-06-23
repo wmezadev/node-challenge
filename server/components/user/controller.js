@@ -34,9 +34,9 @@ async function signup(username, password) {
         }
     };
 
-    const tokken = jwt.sign(payload, "randomString", { expiresIn: 360000 });
+    const token = jwt.sign(payload, "randomString", { expiresIn: 360000 });
 
-    return { id: user.id, username: user.username, tokken };
+    return { id: user.id, username: user.username, token };
 
 }
 
@@ -65,9 +65,9 @@ async function login(username, password) {
         }
     };
 
-    const tokken = jwt.sign(payload, "randomString", { expiresIn: 360000 });
+    const token = jwt.sign(payload, "randomString", { expiresIn: 360000 });
 
-    return { id: user.id, username: user.username, tokken };
+    return { id: user.id, username: user.username, token };
 
 }
 

@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
+
+import { history } from './helpers';
+import PrivateRoute from './components/PrivateRoute';
+
+import Login from './components/Login';
+import Home from './components/Home';
 
 function App() {
+  const [userToken, setUserToken] = useState(JSON.parse(localStorage.getItem('chatroom-jobsity-user')));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router history={history}>
+      <div className="App">
+        <Switch>
+          {!!userToken !== true && (
+            <Route
+              exact
+              path="/login"
+              render={props => <Login {...props} setUserToken={setUserToken} />}
+            />
+          )}
+          <PrivateRoute
+            path="/"
+            component={withRouter(Home)}
+          />
+        </Switch>
+      </div>
+    </Router>
   );
+  
 }
 
 export default App;
