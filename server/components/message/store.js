@@ -14,6 +14,8 @@ async function getMessages(filterChat) {
         } 
         Model.find(filter)
             .populate('user', '-password')
+            .sort({created_at: 'desc'})
+            .limit(50)
             .exec((error, populate) => {
                 if(error){
                     reject(error);
